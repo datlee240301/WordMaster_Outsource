@@ -1,0 +1,6 @@
+[
+  {"level":1,"letters":["A","R","T"],"words":[{"word":"ART"},{"word":"RAT"},{"word":"TAR"}]},
+  {"level":2,"letters":["T","O","P"],"words":[{"word":"TOP"},{"word":"POT"},{"word":"OPT"}]},
+  {"level":3,"letters":["T","E","A"],"words":[{"word":"TEA"},{"word":"EAT"},{"word":"ATE"}]},
+  {"level":4,"letters":["O","N","E"],"words":[{"word":"ONE"},{"word":"EON"},{"word":"NEO"}]}
+]
