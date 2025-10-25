@@ -1,6 +1,357 @@
 [
-  {"level":1,"letters":["A","R","T"],"words":[{"word":"ART"},{"word":"RAT"},{"word":"TAR"}]},
-  {"level":2,"letters":["T","O","P"],"words":[{"word":"TOP"},{"word":"POT"},{"word":"OPT"}]},
-  {"level":3,"letters":["T","E","A"],"words":[{"word":"TEA"},{"word":"EAT"},{"word":"ATE"}]},
-  {"level":4,"letters":["O","N","E"],"words":[{"word":"ONE"},{"word":"EON"},{"word":"NEO"}]}
+  {"level":1,"letters":["A","R","T"],"words":[
+    {"word":"ART","definition":"Creative work such as painting or music."},
+    {"word":"RAT","definition":"A small rodent."},
+    {"word":"TAR","definition":"A black, sticky road material."}
+  ]},
+  {"level":2,"letters":["T","O","P"],"words":[
+    {"word":"TOP","definition":"The highest point or part."},
+    {"word":"POT","definition":"A round container for cooking."},
+    {"word":"OPT","definition":"To choose one thing over another."}
+  ]},
+  {"level":3,"letters":["T","E","A"],"words":[
+    {"word":"TEA","definition":"A hot drink from dried leaves."},
+    {"word":"EAT","definition":"To put food in the mouth."},
+    {"word":"ATE","definition":"Past tense of eat."}
+  ]},
+  {"level":4,"letters":["O","N","E"],"words":[
+    {"word":"ONE","definition":"The number 1."},
+    {"word":"EON","definition":"A very long time."},
+    {"word":"NEO","definition":"New; used as a prefix."}
+  ]},
+  {"level":5,"letters":["E","A","R"],"words":[
+    {"word":"EAR","definition":"The body part for hearing."},
+    {"word":"ARE","definition":"Present tense of be."},
+    {"word":"ERA","definition":"A long distinct period."}
+  ]},
+
+  {"level":6,"letters":["A","M","E","N"],"words":[
+    {"word":"AMEN","definition":"Said at the end of a prayer."},
+    {"word":"NAME","definition":"A word a person is known by."},
+    {"word":"MEAN","definition":"To intend; or unkind."},
+    {"word":"MEN","definition":"Plural of man."},
+    {"word":"MAN","definition":"An adult male human."}
+  ]},
+  {"level":7,"letters":["T","E","A","R"],"words":[
+    {"word":"TEAR","definition":"To rip; or a drop from the eye."},
+    {"word":"RATE","definition":"A measure or speed."},
+    {"word":"TEA","definition":"A hot drink from dried leaves."},
+    {"word":"EAT","definition":"To put food in the mouth."},
+    {"word":"ART","definition":"Creative work like music or painting."}
+  ]},
+  {"level":8,"letters":["S","T","O","P"],"words":[
+    {"word":"STOP","definition":"To come to a halt."},
+    {"word":"SPOT","definition":"A mark; or a place."},
+    {"word":"POST","definition":"Mail; or an upright piece."},
+    {"word":"POTS","definition":"Plural of pot."},
+    {"word":"TOP","definition":"The highest point or part."}
+  ]},
+  {"level":9,"letters":["C","A","R","E"],"words":[
+    {"word":"CARE","definition":"Serious attention or responsibility."},
+    {"word":"RACE","definition":"A competition of speed."},
+    {"word":"ACRE","definition":"A unit of land area."},
+    {"word":"CAR","definition":"A road vehicle with an engine."},
+    {"word":"EAR","definition":"The body part for hearing."}
+  ]},
+  {"level":10,"letters":["N","O","T","E"],"words":[
+    {"word":"NOTE","definition":"A brief written record."},
+    {"word":"TONE","definition":"Quality of a sound or voice."},
+    {"word":"ONE","definition":"The number 1."},
+    {"word":"NOT","definition":"Used to make a negative."},
+    {"word":"TEN","definition":"The number 10."}
+  ]},
+
+  {"level":11,"letters":["A","L","E","R","T"],"words":[
+    {"word":"ALERT","definition":"Quick to notice and react."},
+    {"word":"ALTER","definition":"To change something."},
+    {"word":"LATER","definition":"After the time mentioned."},
+    {"word":"TEAR","definition":"To rip; or a drop from the eye."},
+    {"word":"RATE","definition":"A measure or speed."},
+    {"word":"EAR","definition":"The body part for hearing."}
+  ]},
+  {"level":12,"letters":["S","H","A","R","E"],"words":[
+    {"word":"SHARE","definition":"To divide and give a part."},
+    {"word":"SHEAR","definition":"To cut the wool off a sheep."},
+    {"word":"HEAR","definition":"Perceive sound with the ears."},
+    {"word":"HARE","definition":"A fast-running animal."},
+    {"word":"EARS","definition":"Plural of ear."},
+    {"word":"ARE","definition":"Present tense of be."}
+  ]},
+  {"level":13,"letters":["P","L","A","N","E"],"words":[
+    {"word":"PLANE","definition":"An aircraft with wings."},
+    {"word":"PANEL","definition":"A flat section of a surface."},
+    {"word":"PENAL","definition":"Relating to punishment by law."},
+    {"word":"PLAN","definition":"A detailed proposal."},
+    {"word":"LEAN","definition":"To rest on something."},
+    {"word":"PALE","definition":"Having little color."}
+  ]},
+  {"level":14,"letters":["S","T","E","A","M"],"words":[
+    {"word":"STEAM","definition":"Water vapor from heat."},
+    {"word":"TEAMS","definition":"Groups working together."},
+    {"word":"SEAM","definition":"A line where pieces join."},
+    {"word":"STEM","definition":"The main stalk of a plant."},
+    {"word":"MATE","definition":"A friend or partner."},
+    {"word":"SEAT","definition":"A place to sit."}
+  ]},
+  {"level":15,"letters":["C","R","A","N","E"],"words":[
+    {"word":"CRANE","definition":"A tall lifting machine."},
+    {"word":"CANER","definition":"A person who works with cane."},
+    {"word":"NEAR","definition":"At a short distance."},
+    {"word":"EARN","definition":"Receive money for work."},
+    {"word":"CANE","definition":"A long walking stick."},
+    {"word":"RACE","definition":"A competition of speed."}
+  ]},
+
+  {"level":16,"letters":["B","R","E","A","K"],"words":[
+    {"word":"BREAK","definition":"To separate into pieces."},
+    {"word":"BRAKE","definition":"A device for slowing."},
+    {"word":"BARE","definition":"Without covering."},
+    {"word":"BEAR","definition":"A large furry animal."},
+    {"word":"RAKE","definition":"A tool with teeth."},
+    {"word":"BARK","definition":"The sound a dog makes."}
+  ]},
+  {"level":17,"letters":["S","T","O","N","E"],"words":[
+    {"word":"STONE","definition":"A hard piece of mineral."},
+    {"word":"NOTES","definition":"Plural of note."},
+    {"word":"TONES","definition":"Plural of tone."},
+    {"word":"ONSET","definition":"The beginning of something."},
+    {"word":"NOTE","definition":"A brief written record."},
+    {"word":"ONES","definition":"Things of a single kind."}
+  ]},
+  {"level":18,"letters":["F","R","A","M","E"],"words":[
+    {"word":"FRAME","definition":"A rigid surrounding structure."},
+    {"word":"FAME","definition":"Being widely known."},
+    {"word":"FARM","definition":"Land for crops or animals."},
+    {"word":"FEAR","definition":"An unpleasant feeling of danger."},
+    {"word":"FARE","definition":"Price paid for a trip."},
+    {"word":"MARE","definition":"An adult female horse."}
+  ]},
+  {"level":19,"letters":["G","R","A","I","N"],"words":[
+    {"word":"GRAIN","definition":"A tiny hard seed."},
+    {"word":"RAIN","definition":"Water from clouds."},
+    {"word":"GAIN","definition":"To obtain or increase."},
+    {"word":"GRIN","definition":"To smile broadly."},
+    {"word":"RANG","definition":"Past tense of ring."},
+    {"word":"RING","definition":"A small circular band."}
+  ]},
+  {"level":20,"letters":["P","E","A","R","L"],"words":[
+    {"word":"PEARL","definition":"A smooth round gem."},
+    {"word":"PEAR","definition":"A sweet bell-shaped fruit."},
+    {"word":"LEAP","definition":"To jump high or far."},
+    {"word":"REAL","definition":"Actually existing."},
+    {"word":"EARL","definition":"A British nobleman."},
+    {"word":"PALE","definition":"Having little color."}
+  ]},
+  {"level":21,"letters":["T","R","A","I","N"],"words":[
+    {"word":"TRAIN","definition":"Vehicles that run on tracks."},
+    {"word":"RAIN","definition":"Water from clouds."},
+    {"word":"RAN","definition":"Past tense of run."},
+    {"word":"AIR","definition":"The gas we breathe."},
+    {"word":"ART","definition":"Creative work like painting."}
+  ]},
+  {"level":22,"letters":["T","A","B","L","E"],"words":[
+    {"word":"TABLE","definition":"A piece of furniture with a flat top."},
+    {"word":"ABLE","definition":"Having the power or skill."},
+    {"word":"BELT","definition":"A strap worn at the waist."},
+    {"word":"TALE","definition":"A story."},
+    {"word":"LATE","definition":"After the expected time."}
+  ]},
+  {"level":23,"letters":["C","H","A","I","R"],"words":[
+    {"word":"CHAIR","definition":"A seat for one person."},
+    {"word":"HAIR","definition":"Threads that grow on skin."},
+    {"word":"ARCH","definition":"A curved structure."},
+    {"word":"RICH","definition":"Having a lot of money."},
+    {"word":"CHAR","definition":"To burn slightly."}
+  ]},
+  {"level":24,"letters":["P","H","O","N","E"],"words":[
+    {"word":"PHONE","definition":"A device used to call people."},
+    {"word":"HONE","definition":"To sharpen or improve."},
+    {"word":"OPEN","definition":"Not closed."},
+    {"word":"PEON","definition":"A worker with low status."},
+    {"word":"HOPE","definition":"A feeling good will happen."}
+  ]},
+  {"level":25,"letters":["M","O","U","S","E"],"words":[
+    {"word":"MOUSE","definition":"A small rodent; a computer device."},
+    {"word":"MUSE","definition":"To think deeply."},
+    {"word":"SOME","definition":"An unspecified amount."},
+    {"word":"USE","definition":"To apply for a purpose."},
+    {"word":"SUM","definition":"The total amount."}
+  ]},
+  {"level":26,"letters":["B","R","E","A","D"],"words":[
+    {"word":"BREAD","definition":"Food made from flour and water."},
+    {"word":"BEAR","definition":"A large furry animal."},
+    {"word":"READ","definition":"To look at and understand words."},
+    {"word":"DEAR","definition":"Loved or valued."},
+    {"word":"EAR","definition":"The body part for hearing."},
+    {"word":"BAD","definition":"Not good."}
+  ]},
+  {"level":27,"letters":["F","R","U","I","T"],"words":[
+    {"word":"FRUIT","definition":"The sweet product of a plant."},
+    {"word":"RIFT","definition":"A split or crack."},
+    {"word":"FUR","definition":"Soft hair on an animal."},
+    {"word":"FIT","definition":"To be the right size."},
+    {"word":"RUT","definition":"A deep track in the ground."}
+  ]},
+  {"level":28,"letters":["S","H","A","P","E"],"words":[
+    {"word":"SHAPE","definition":"The form of something."},
+    {"word":"PHASE","definition":"A stage in a process."},
+    {"word":"HEAP","definition":"A large pile."},
+    {"word":"APE","definition":"A primate like a monkey."},
+    {"word":"SAP","definition":"Fluid in a plant."}
+  ]},
+  {"level":29,"letters":["S","O","U","N","D"],"words":[
+    {"word":"SOUND","definition":"Something that can be heard."},
+    {"word":"UNDO","definition":"Reverse an action."},
+    {"word":"SUN","definition":"The star that lights Earth."},
+    {"word":"NOD","definition":"To move head up and down."},
+    {"word":"DUN","definition":"A dull gray-brown color."}
+  ]},
+  {"level":30,"letters":["P","L","A","N","T"],"words":[
+    {"word":"PLANT","definition":"A living thing that grows in soil."},
+    {"word":"PLAN","definition":"A detailed proposal."},
+    {"word":"PAN","definition":"A metal cooking container."},
+    {"word":"PAL","definition":"A friend."},
+    {"word":"ANT","definition":"A small social insect."}
+  ]},
+  {"level":31,"letters":["G","R","A","S","P"],"words":[
+    {"word":"GRASP","definition":"To hold firmly."},
+    {"word":"SPAR","definition":"To box or argue."},
+    {"word":"RAGS","definition":"Old torn cloth pieces."},
+    {"word":"GAS","definition":"A state of matter."},
+    {"word":"RAP","definition":"To hit quickly."}
+  ]},
+  {"level":32,"letters":["S","H","I","N","E"],"words":[
+    {"word":"SHINE","definition":"To give off light."},
+    {"word":"HENS","definition":"Adult female chickens."},
+    {"word":"SHE","definition":"A female person."},
+    {"word":"HIS","definition":"Belonging to a male person."},
+    {"word":"SINE","definition":"A math function."}
+  ]},
+  {"level":33,"letters":["S","M","I","L","E"],"words":[
+    {"word":"SMILE","definition":"A happy facial expression."},
+    {"word":"MILE","definition":"A unit of distance."},
+    {"word":"SLIM","definition":"Thin in an attractive way."},
+    {"word":"LIME","definition":"A small green citrus fruit."},
+    {"word":"SEMI","definition":"Half; partial."}
+  ]},
+  {"level":34,"letters":["D","R","E","A","M"],"words":[
+    {"word":"DREAM","definition":"Thoughts and images during sleep."},
+    {"word":"MADE","definition":"Created or built."},
+    {"word":"READ","definition":"To look at words and understand."},
+    {"word":"DEAR","definition":"Loved or valued."},
+    {"word":"ARM","definition":"The limb below the shoulder."}
+  ]},
+  {"level":35,"letters":["H","E","A","R","T"],"words":[
+    {"word":"HEART","definition":"The organ that pumps blood."},
+    {"word":"EARTH","definition":"The planet we live on."},
+    {"word":"HEAR","definition":"Perceive sound with the ears."},
+    {"word":"HARE","definition":"A fast-running animal."},
+    {"word":"TEAR","definition":"To rip; or a drop from the eye."}
+  ]},
+
+  {"level":36,"letters":["W","A","T","E","R"],"words":[
+    {"word":"WATER","definition":"A clear liquid needed for life."},
+    {"word":"WEAR","definition":"To have on the body."},
+    {"word":"TEAR","definition":"A drop from the eye."},
+    {"word":"WET","definition":"Covered with liquid."},
+    {"word":"EAT","definition":"To put food in the mouth."}
+  ]},
+  {"level":37,"letters":["C","L","O","U","D"],"words":[
+    {"word":"CLOUD","definition":"Water vapor mass in the sky."},
+    {"word":"LOUD","definition":"Making much noise."},
+    {"word":"COLD","definition":"Having a low temperature."},
+    {"word":"COULD","definition":"Past form of can."},
+    {"word":"DUO","definition":"A pair; two people."}
+  ]},
+  {"level":38,"letters":["H","O","U","S","E"],"words":[
+    {"word":"HOUSE","definition":"A building where people live."},
+    {"word":"SHOE","definition":"Footwear worn on feet."},
+    {"word":"USE","definition":"To apply for a purpose."},
+    {"word":"HUES","definition":"Colors or shades."},
+    {"word":"SUE","definition":"To bring a legal action."}
+  ]},
+  {"level":39,"letters":["L","I","G","H","T"],"words":[
+    {"word":"LIGHT","definition":"Brightness that makes things visible."},
+    {"word":"HILT","definition":"The handle of a sword."},
+    {"word":"TILT","definition":"To move into a sloping position."},
+    {"word":"GILT","definition":"Covered with a thin layer of gold."},
+    {"word":"HIT","definition":"To strike something."}
+  ]},
+  {"level":40,"letters":["S","P","A","C","E"],"words":[
+    {"word":"SPACE","definition":"Beyond Earth's atmosphere."},
+    {"word":"PACE","definition":"Speed of movement."},
+    {"word":"CASE","definition":"A container or an example."},
+    {"word":"CAP","definition":"A kind of headwear."},
+    {"word":"SEA","definition":"A large body of salt water."}
+  ]},
+  {"level":41,"letters":["P","E","A","C","E"],"words":[
+    {"word":"PEACE","definition":"Freedom from conflict."},
+    {"word":"PACE","definition":"Speed of movement."},
+    {"word":"CAPE","definition":"Clothing worn over shoulders."},
+    {"word":"PEA","definition":"A small round green seed."},
+    {"word":"ACE","definition":"A playing card with one symbol."}
+  ]},
+  {"level":42,"letters":["G","R","A","S","S"],"words":[
+    {"word":"GRASS","definition":"Green plants covering ground."},
+    {"word":"RAGS","definition":"Old torn pieces of cloth."},
+    {"word":"SASS","definition":"Rude, cheeky speech."},
+    {"word":"GAS","definition":"A state of matter."},
+    {"word":"SAG","definition":"To sink under weight."}
+  ]},
+  {"level":43,"letters":["B","R","I","N","G"],"words":[
+    {"word":"BRING","definition":"To take something to a place."},
+    {"word":"RING","definition":"A small circular band."},
+    {"word":"GIN","definition":"A strong alcoholic drink."},
+    {"word":"RIG","definition":"To set up equipment."},
+    {"word":"BIG","definition":"Of large size."}
+  ]},
+  {"level":44,"letters":["S","O","U","N","D"],"words":[
+    {"word":"SOUND","definition":"Something that can be heard."},
+    {"word":"UNDO","definition":"Reverse an action."},
+    {"word":"SUN","definition":"The star lighting Earth."},
+    {"word":"NOD","definition":"Move the head up and down."},
+    {"word":"DUN","definition":"A dull gray-brown color."}
+  ]},
+  {"level":45,"letters":["F","L","O","W","N"],"words":[
+    {"word":"FLOWN","definition":"Traveled through the air."},
+    {"word":"FLOW","definition":"Move like a liquid."},
+    {"word":"LOW","definition":"Not high."},
+    {"word":"NOW","definition":"At the present time."},
+    {"word":"OWN","definition":"To possess something."}
+  ]},
+  {"level":46,"letters":["C","L","E","A","R"],"words":[
+    {"word":"CLEAR","definition":"Easy to see or understand."},
+    {"word":"REAL","definition":"Actually existing."},
+    {"word":"EARL","definition":"A British nobleman."},
+    {"word":"LACE","definition":"A delicate patterned fabric."},
+    {"word":"CARE","definition":"Serious attention or responsibility."}
+  ]},
+  {"level":47,"letters":["B","L","A","C","K"],"words":[
+    {"word":"BLACK","definition":"The darkest color."},
+    {"word":"BACK","definition":"Rear part of the body."},
+    {"word":"LACK","definition":"To be without."},
+    {"word":"CAB","definition":"A taxi."},
+    {"word":"LAB","definition":"A place for experiments."}
+  ]},
+  {"level":48,"letters":["W","H","I","T","E"],"words":[
+    {"word":"WHITE","definition":"The lightest color."},
+    {"word":"WHET","definition":"To sharpen a blade."},
+    {"word":"WET","definition":"Covered with liquid."},
+    {"word":"HIT","definition":"To strike something."},
+    {"word":"TIE","definition":"To fasten with a knot."}
+  ]},
+  {"level":49,"letters":["B","R","O","W","N"],"words":[
+    {"word":"BROWN","definition":"A color like coffee."},
+    {"word":"BORN","definition":"Brought into life."},
+    {"word":"BOW","definition":"To bend forward."},
+    {"word":"OWN","definition":"To possess something."},
+    {"word":"NOW","definition":"At the present time."}
+  ]},
+  {"level":50,"letters":["S","M","A","R","T"],"words":[
+    {"word":"SMART","definition":"Clever or stylish."},
+    {"word":"STAR","definition":"A bright object in the night sky."},
+    {"word":"ART","definition":"Creative work like painting."},
+    {"word":"MART","definition":"A market or shopping center."},
+    {"word":"ARM","definition":"The limb below the shoulder."}
+  ]}
 ]

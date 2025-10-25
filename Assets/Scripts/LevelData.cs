@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class LevelWord
 {
     public string word;
+    public string definition; // thêm field definition
 }
+
 
 [Serializable]
 public class LevelItem

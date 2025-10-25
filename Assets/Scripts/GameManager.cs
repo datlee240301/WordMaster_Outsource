@@ -25,6 +25,15 @@ public class GameManager : MonoBehaviour
     private LevelItem currentLevel;
     private List<GameObject> spawnedLetterButtons = new List<GameObject>();
     private Dictionary<string, WordRowUI> wordRowMap = new Dictionary<string, WordRowUI>();
+    public UnityEngine.UI.Button hintButton;
+    public string Definition { get; private set; }
+    // theo file GameManager của bạn
+    public UnityEngine.UI.Text definitionDisplay; // text cố định trên UI để hiển thị definition
+    private string lastHintedWord = null; // lưu từ đang được hint (để revert nếu fail)
+
+
+
+
 
     void Awake()
     {
@@ -40,7 +49,46 @@ public class GameManager : MonoBehaviour
             loader.Load();
         }
         LoadLevel(startLevelIndex);
+        hintButton.onClick.RemoveAllListeners();
+        hintButton.onClick.AddListener(OnHintPressed);
+
     }
+    // gọi khi người nhấn nút Hint
+    public void OnHintPressed()
+    {
+        foreach (Transform child in wordRowsParent)
+        {
+            var row = child.GetComponent<WordRowUI>();
+            if (row == null) continue;
+            if (!row.IsFullyRevealed())
+            {
+                // show definition ở chỗ cố định (một lần đầu)
+                if (definitionDisplay != null)
+                    definitionDisplay.text = row.Definition;
+
+                int revealedIndex = row.RevealOneLetterHint(); // reveal 1 ký tự, đánh dấu isHinted
+                lastHintedWord = row.word.ToUpper();
+
+                // nếu reveal làm đầy hàng
+                if (row.IsFullyRevealed())
+                {
+                    Debug.Log("ăn 1 hàng");
+                    if (wordRowMap.ContainsKey(row.word.ToUpper()))
+                        wordRowMap.Remove(row.word.ToUpper());
+
+                    // clear definition display
+                    if (definitionDisplay != null) definitionDisplay.text = "";
+                    lastHintedWord = null;
+
+                    if (wordRowMap.Count == 0) Debug.Log("win");
+                }
+                break; // chỉ hint 1 hàng mỗi lần bấm
+            }
+        }
+    }
+
+
+
 
     public void LoadLevel(int index)
     {
@@ -71,7 +119,8 @@ public class GameManager : MonoBehaviour
         {
             GameObject r = Instantiate(wordRowPrefab, wordRowsParent);
             var ui = r.GetComponent<WordRowUI>();
-            ui.Setup(w.word); // tạo đủ ô
+            ui.Setup(w.word, w.definition);
+
             wordRowMap[w.word.ToUpper()] = ui;
         }
 
@@ -128,24 +177,132 @@ public class GameManager : MonoBehaviour
 
     // Khi người dùng thả chuột/vuốt (submit word)
     // word phải đã được tạo bởi WordBuilder (chuỗi chữ)
-    public void OnSubmitWord(string word, List<LetterButton> pathUsed)
-    {
-        if (string.IsNullOrEmpty(word)) return;
-        string W = word.ToUpper();
+    public void OnSubmitWord(string submittedWord, List<LetterButton> pathUsed)
+{
+    if (string.IsNullOrEmpty(submittedWord)) return;
+    string submitted = submittedWord.ToUpper();
 
-        if (wordRowMap.ContainsKey(W))
+    // 1) Nếu submitted khớp chính xác 1 từ trong map (đủ hoặc một phần đã có do hint)
+    if (wordRowMap.ContainsKey(submitted))
+    {
+        var row = wordRowMap[submitted];
+        List<int> emptyIdx = row.GetEmptySlotIndices(); // chỉ số ô trống (left->right)
+        if (emptyIdx.Count == 0)
         {
-            // đúng: animate từng chữ bay vào hàng đúng
-            StartCoroutine(AnimateWordToRow(W, pathUsed));
-            messagePanel?.Show("Đúng!", true);
+            // đã đầy (không nên xảy ra) -> nothing
+            return;
         }
-        else
+
+        // Chúng ta muốn điền theo vị trí của từ: tức là ô targetIndex sẽ lấy ký tự submitted[targetIndex]
+        // và cố gắng tìm một LetterButton trong pathUsed có letter == needed để animate.
+        bool[] usedPath = new bool[pathUsed.Count];
+
+        for (int e = 0; e < emptyIdx.Count; e++)
         {
-            // sai
-            messagePanel?.Show("Sai!", false);
-            // feedback: shake / flash
+            int targetIndex = emptyIdx[e];
+            if (targetIndex < 0 || targetIndex >= submitted.Length) continue;
+
+            char needed = submitted[targetIndex];
+
+            // tìm trong pathUsed một nút chưa dùng có letter == needed
+            int foundPathIdx = -1;
+            for (int p = 0; p < pathUsed.Count; p++)
+            {
+                if (usedPath[p]) continue;
+                if (char.ToUpper(pathUsed[p].letter) == char.ToUpper(needed))
+                {
+                    foundPathIdx = p;
+                    break;
+                }
+            }
+
+            // nếu không tìm thấy nút cùng ký tự trong pathUsed, lấy nút bất kỳ chưa dùng (fallback)
+            if (foundPathIdx == -1)
+            {
+                for (int p = 0; p < pathUsed.Count; p++)
+                {
+                    if (!usedPath[p])
+                    {
+                        foundPathIdx = p;
+                        break;
+                    }
+                }
+            }
+
+            // nếu vẫn không tìm thấy (rất hiếm) -> bỏ qua
+            if (foundPathIdx == -1) continue;
+
+            // dùng nút tìm được để animate tới slot tương ứng
+            var btn = pathUsed[foundPathIdx];
+            usedPath[foundPathIdx] = true;
+
+            // animate rồi điền ký tự (chúng ta fill bằng ký tự đúng vị trí của từ)
+            StartCoroutine(MoveUILetterToSlot(btn, row.GetSlotRectAtIndex(targetIndex), 0.32f));
+            row.FillIndexNonHint(targetIndex, needed);
+        }
+
+        // hoàn tất hàng
+        Debug.Log("ăn 1 hàng");
+        wordRowMap.Remove(submitted);
+        if (definitionDisplay != null) definitionDisplay.text = "";
+        if (lastHintedWord != null && lastHintedWord == submitted) lastHintedWord = null;
+
+        if (wordRowMap.Count == 0) Debug.Log("win");
+        return;
+    }
+
+    // 2) Nếu không khớp toàn bộ từ, thử khớp chuỗi thiếu của từng row (như cũ)
+    bool matchedMissing = false;
+    foreach (var kv in new Dictionary<string, WordRowUI>(wordRowMap))
+    {
+        var row = kv.Value;
+        string missing = row.GetMissingSequence(); // chuỗi còn thiếu (theo thứ tự)
+        if (missing.Length == 0) continue;
+        if (submitted == missing)
+        {
+            // điền theo thứ tự các ô trống
+            var empties = row.GetEmptySlotIndices();
+            int fillCount = Mathf.Min(empties.Count, pathUsed.Count);
+            for (int i = 0; i < fillCount; i++)
+            {
+                int targetIdx = empties[i];
+                row.FillIndexNonHint(targetIdx, pathUsed[i].letter);
+                StartCoroutine(MoveUILetterToSlot(pathUsed[i], row.GetSlotRectAtIndex(targetIdx), 0.32f));
+            }
+
+            if (row.IsFullyRevealed())
+            {
+                Debug.Log("ăn 1 hàng");
+                wordRowMap.Remove(row.word.ToUpper());
+                if (definitionDisplay != null) definitionDisplay.text = "";
+                if (lastHintedWord != null && lastHintedWord == row.word.ToUpper()) lastHintedWord = null;
+
+                if (wordRowMap.Count == 0) Debug.Log("win");
+            }
+
+            matchedMissing = true;
+            break;
         }
     }
+
+    if (!matchedMissing)
+    {
+        // sai: nếu có lastHintedWord -> revert hinted letters ở hàng đó
+        if (!string.IsNullOrEmpty(lastHintedWord) && wordRowMap.ContainsKey(lastHintedWord))
+        {
+            var hintedRow = wordRowMap[lastHintedWord];
+            hintedRow.RevertHintedLetters();
+            // --- KHÔNG xoá definitionDisplay ở đây (giữ definition hiển thị)
+            // --- KHÔNG reset lastHintedWord (giữ trạng thái hint để người chơi thử lại)
+        }
+
+        // feedback sai
+        messagePanel?.Show("Sai!", false);
+    }
+
+}
+
+
 
     IEnumerator AnimateWordToRow(string word, List<LetterButton> pathUsed)
     {
