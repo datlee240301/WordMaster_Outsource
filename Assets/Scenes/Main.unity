@@ -517,7 +517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &823374335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,8 +938,7 @@ MonoBehaviour:
   wordRowsParent: {fileID: 1634244928}
   currentBuiltWordText: {fileID: 1162703690}
   lineDrawer: {fileID: 1000988785}
-  messagePanel: {fileID: 823374335}
-  startLevelIndex: 0
+  startLevelIndex: 43
   hintButton: {fileID: 807848991}
   definitionDisplay: {fileID: 768893101}
 --- !u!4 &1367352696
@@ -1121,6 +1120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1634244928}
   - component: {fileID: 1634244929}
+  - component: {fileID: 1634244930}
   m_Layer: 5
   m_Name: WordRowsParent
   m_TagString: Untagged
@@ -1173,6 +1173,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1634244930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634244927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81ac050ef120a7478dd5039690f2e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoAdjustVerticalPadding
+  minPadding: 4
+  maxPadding: 60
+  rebuildDelay: 0.02
+  vlg: {fileID: 0}
+  rt: {fileID: 0}
 --- !u!1 &1933346686
 GameObject:
   m_ObjectHideFlags: 0

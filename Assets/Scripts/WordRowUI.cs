@@ -33,7 +33,7 @@ public class WordRowUI : MonoBehaviour
             GameObject b = Instantiate(letterBoxPrefab, transform);
             b.name = "Box_" + i;
             var txt = b.GetComponentInChildren<Text>();
-            txt.text = "_";
+            txt.text = "";
             boxTexts.Add(txt);
             boxRects.Add(b.GetComponent<RectTransform>());
             isRevealed[i] = false;
@@ -105,7 +105,7 @@ public class WordRowUI : MonoBehaviour
             {
                 isHinted[i] = false;
                 isRevealed[i] = false;
-                boxTexts[i].text = "_";
+                boxTexts[i].text = "";
                 revealedCount = Mathf.Max(0, revealedCount - 1);
             }
         }

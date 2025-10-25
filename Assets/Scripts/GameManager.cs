@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public Transform wordRowsParent; // nơi chứa các hàng từ
     public Text currentBuiltWordText; // text hiển thị từ đang nối theo ngón (ở góc hoặc follow)
     public LineDrawer lineDrawer; // vẽ đường nối (optional)
-    public MessagePanel messagePanel;
+    //public MessagePanel messagePanel;
 
     [Header("Level settings")]
     public int startLevelIndex = 0;
@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         LoadLevel(startLevelIndex);
         hintButton.onClick.RemoveAllListeners();
         hintButton.onClick.AddListener(OnHintPressed);
-
     }
     // gọi khi người nhấn nút Hint
     public void OnHintPressed()
@@ -297,7 +296,7 @@ public class GameManager : MonoBehaviour
         }
 
         // feedback sai
-        messagePanel?.Show("Sai!", false);
+        //messagePanel?.Show("Sai!", false);
     }
 
 }
