@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         LoadLevel(startLevelIndex);
         hintButton.onClick.RemoveAllListeners();
         hintButton.onClick.AddListener(OnHintPressed);
+        DebugCountLetterBoxesInFirstRow();
     }
     // gọi khi người nhấn nút Hint
     public void OnHintPressed()
@@ -256,6 +257,8 @@ public class GameManager : MonoBehaviour
     {
         var row = kv.Value;
         string missing = row.GetMissingSequence(); // chuỗi còn thiếu (theo thứ tự)
+        if (lastHintedWord == kv.Key.ToUpper()) continue; // nếu đã hint -> bỏ qua phần thiếu
+
         if (missing.Length == 0) continue;
         if (submitted == missing)
         {
@@ -286,18 +289,18 @@ public class GameManager : MonoBehaviour
 
     if (!matchedMissing)
     {
-        // sai: nếu có lastHintedWord -> revert hinted letters ở hàng đó
+        // Nếu có hint rồi thì KHÔNG revert hint, chỉ báo sai
         if (!string.IsNullOrEmpty(lastHintedWord) && wordRowMap.ContainsKey(lastHintedWord))
         {
-            var hintedRow = wordRowMap[lastHintedWord];
-            hintedRow.RevertHintedLetters();
-            // --- KHÔNG xoá definitionDisplay ở đây (giữ definition hiển thị)
-            // --- KHÔNG reset lastHintedWord (giữ trạng thái hint để người chơi thử lại)
+            // chỉ feedback sai, KHÔNG xóa hint
+            //messagePanel?.Show("Sai!", false);
+            return;
         }
 
-        // feedback sai
+        // nếu không có hint thì revert như bình thường
         //messagePanel?.Show("Sai!", false);
     }
+
 
 }
 
@@ -405,5 +408,30 @@ public class GameManager : MonoBehaviour
         // destroy copy
         Destroy(copy);
         yield return null;
+    }
+    public void DebugCountLetterBoxesInFirstRow()
+    {
+        if (wordRowsParent == null)
+        {
+            Debug.LogError("`wordRowsParent` null");
+            return;
+        }
+
+        if (wordRowsParent.childCount == 0)
+        {
+            Debug.Log("Không có hàng từ nào trong `wordRowsParent`.");
+            return;
+        }
+
+        Transform firstRow = wordRowsParent.GetChild(0);
+        int candidateCount = 0;
+        foreach (Transform child in firstRow)
+        {
+            string nameLower = child.gameObject.name.ToLower();
+            if (nameLower.Contains("letter") || nameLower.Contains("box") || nameLower.Contains("slot"))
+                candidateCount++;
+        }
+
+        Debug.Log($"Hàng đầu tiên `{firstRow.name}` có {candidateCount} LetterBoxPrefab (tổng child: {firstRow.childCount}).");
     }
 }
