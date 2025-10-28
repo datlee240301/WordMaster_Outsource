@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     public float circleRadius = 200f; // bán kính (ui units)
     public GameObject wordRowPrefab; // prefab chứa WordRowUI
     public Transform wordRowsParent; // nơi chứa các hàng từ
-    public Text currentBuiltWordText; // text hiển thị từ đang nối theo ngón (ở góc hoặc follow)
+    public TMP_Text currentBuiltWordText; // text hiển thị từ đang nối theo ngón (ở góc hoặc follow)
     public Image currentWordBackground;
     public LineDrawer lineDrawer; // vẽ đường nối (optional)
     //public MessagePanel messagePanel;
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
     public UnityEngine.UI.Button hintButton;
     public string Definition { get; private set; }
     // theo file GameManager của bạn
-    public UnityEngine.UI.Text definitionDisplay; // text cố định trên UI để hiển thị definition
+    public TMP_Text definitionDisplay; // text cố định trên UI để hiển thị definition
     private string lastHintedWord = null; // lưu từ đang được hint (để revert nếu fail)
 
 

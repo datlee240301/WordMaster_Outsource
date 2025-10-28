@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class MessagePanel : MonoBehaviour
 {
-    public Text text;
+    public TMP_Text text;
     public Image bg;
     public float showTime = 0.9f;
     Coroutine running;

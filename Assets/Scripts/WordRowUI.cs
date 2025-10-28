@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class WordRowUI : MonoBehaviour
     public string word { get; private set; }
     public GameObject letterBoxPrefab;
 
-    private List<Text> boxTexts = new List<Text>();
+    private List<TMP_Text> boxTexts = new List<TMP_Text>();
     private List<RectTransform> boxRects = new List<RectTransform>();
     private bool[] isRevealed;   // đã reveal (bằng hint hoặc người chơi)
     private bool[] isHinted;     // reveal do hint (để có thể revert)
@@ -32,7 +33,7 @@ public class WordRowUI : MonoBehaviour
         {
             GameObject b = Instantiate(letterBoxPrefab, transform);
             b.name = "Box_" + i;
-            var txt = b.GetComponentInChildren<Text>();
+            var txt = b.GetComponentInChildren<TMP_Text>();
             txt.text = "";
             boxTexts.Add(txt);
             boxRects.Add(b.GetComponent<RectTransform>());

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 public class LetterButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerUpHandler
 {
     public char letter;
-    public Text letterText;
+    public TMP_Text letterText;
     public Image bg;
     private GameManager gameManager;
     private bool pointerDown = false;
