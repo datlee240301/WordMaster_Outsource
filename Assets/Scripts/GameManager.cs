@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject wordRowPrefab; // prefab chứa WordRowUI
     public Transform wordRowsParent; // nơi chứa các hàng từ
     public Text currentBuiltWordText; // text hiển thị từ đang nối theo ngón (ở góc hoặc follow)
+    public Image currentWordBackground;
     public LineDrawer lineDrawer; // vẽ đường nối (optional)
     //public MessagePanel messagePanel;
 
@@ -163,7 +164,25 @@ public class GameManager : MonoBehaviour
     public void ShowCurrentBuiltWord(string w)
     {
         currentBuiltWordText.text = w;
+
+        if (currentWordBackground != null)
+        {
+            bool hasText = !string.IsNullOrEmpty(w);
+            currentWordBackground.gameObject.SetActive(hasText);
+
+            if (hasText)
+            {
+                // đo chiều rộng text (tính theo số ký tự)
+                float widthPerChar = currentBuiltWordText.fontSize * 0.6f; // chỉnh tỉ lệ nếu cần
+                float targetWidth = Mathf.Max(100f, w.Length * widthPerChar + 40f); // padding
+                var bgRT = currentWordBackground.rectTransform;
+                Vector2 size = bgRT.sizeDelta;
+                size.x = targetWidth;
+                bgRT.sizeDelta = size;
+            }
+        }
     }
+
 
     public void AddLinePoint(Vector3 worldPos)
     {
@@ -173,6 +192,10 @@ public class GameManager : MonoBehaviour
     public void ClearLine()
     {
         lineDrawer?.Clear();
+        currentBuiltWordText.text = "";
+        if (currentWordBackground != null)
+            currentWordBackground.gameObject.SetActive(false);
+
     }
 
     // Khi người dùng thả chuột/vuốt (submit word)
