@@ -62,7 +62,7 @@ public class LetterButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
     public void SetHighlighted(bool on)
     {
-        if (bg != null) bg.color = on ? new Color(1f, 0.85f, 0.3f) : Color.black;
+        if (bg != null) bg.color = on ? Color.white : new Color(0f, 0f, 0f, 0f);
     }
 
     // trong LetterButton.cs
