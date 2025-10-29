@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     // [SerializeField] Sprite vibrateOnSprite;
     // [SerializeField] Sprite vibrateOffSprite;
 
-    [SerializeField] TextMeshProUGUI ticketNumberText;
+    [SerializeField] TextMeshProUGUI ticketNumberText, currentLevelText;
     int ticketNumber;
     [SerializeField] UiPanelDotween noticePanel;
     int LevelId;
@@ -62,6 +62,8 @@ public class UIManager : MonoBehaviour
         {
             ticketNumber = PlayerPrefs.GetInt(StringManager.ticketNumber);
             ticketNumberText.text = ticketNumber.ToString();
+            if (currentLevelText != null)
+                currentLevelText.text ="Level " + (PlayerPrefs.GetInt(StringManager.currentLevelId)+1).ToString();
         }
 
         if (SceneManager.GetActiveScene().name == "Splash")
@@ -117,7 +119,6 @@ public class UIManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(StringManager.pressLevelButton, 1);
             PlayerPrefs.SetInt(StringManager.pressPlayButton, 0);
-            PlayerPrefs.SetInt(StringManager.currentLevelIdLevelButton, levelId);
             StartCoroutine(FadeAndLoadScene("Main"));
         }
         else

@@ -53,11 +53,12 @@ public class GameManager : MonoBehaviour
             if (loader == null) { Debug.LogError("Cần LevelLoader trong scene"); return; }
             loader.Load();
         }
-        LoadLevel(startLevelIndex);
+        LoadLevel(PlayerPrefs.GetInt(StringManager.currentLevelId));
         hintButton.onClick.RemoveAllListeners();
         hintButton.onClick.AddListener(OnHintPressed);
         DebugCountLetterBoxesInFirstRow();
     }
+    
     private Vector2 RectTransformWorldToCanvasAnchoredPos(RectTransform rt)
     {
         RectTransform canvasRT = mainCanvas.GetComponent<RectTransform>();
