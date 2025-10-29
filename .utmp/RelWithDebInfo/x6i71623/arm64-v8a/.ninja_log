@@ -1,23 +1,23 @@
 # ninja log v5
-0	1237	7830890524470634	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	ee30bcc51e6dd496
-42	377	7830890515850124	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	c2def2d2bc5b86b7
-378	532	7830890517239794	C:/Users/Dat Lee/Videos/Captures/File/WordMaster_Outsource/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/x6i71623/obj/arm64-v8a/libswappywrapper.so	f3d0c3f383dd7935
-18	910	7830890521158492	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	cc0f87cb4a19ed89
-23	924	7830890521281716	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	e8bd5b7f62bccfc4
-9	1015	7830890522240538	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	652d6668f1f48726
-36	945	7830890521505930	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	3f8b03eb3dcff7b5
-29	1166	7830890523776993	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	d7b9214c8d5fbfeb
-5	959	7830890521655917	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	9921f32e8f7cbc4c
-14	1144	7830890523542577	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8406dc7bb2b1ac2f
-1237	1325	7830890525343906	C:/Users/Dat Lee/Videos/Captures/File/WordMaster_Outsource/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/x6i71623/obj/arm64-v8a/libgame.so	b649c1f28fb385d0
+4	980	7834084129703206	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	ee30bcc51e6dd496
 31	272	7834084122613202	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	c2def2d2bc5b86b7
 272	425	7834084123963195	C:/Users/Dat Lee/Videos/Captures/File/WordMaster_Outsource/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/x6i71623/obj/arm64-v8a/libswappywrapper.so	f3d0c3f383dd7935
 16	717	7834084127053206	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	cc0f87cb4a19ed89
 7	721	7834084127093200	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	e8bd5b7f62bccfc4
-13	744	7834084127323210	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	9921f32e8f7cbc4c
 23	751	7834084127403207	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	3f8b03eb3dcff7b5
 10	777	7834084127663204	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	652d6668f1f48726
+13	744	7834084127323210	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	9921f32e8f7cbc4c
 27	892	7834084128813194	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	d7b9214c8d5fbfeb
 20	924	7834084129133789	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8406dc7bb2b1ac2f
-4	980	7834084129703206	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	ee30bcc51e6dd496
 980	1048	7834084130403195	C:/Users/Dat Lee/Videos/Captures/File/WordMaster_Outsource/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/x6i71623/obj/arm64-v8a/libgame.so	b649c1f28fb385d0
+49	405	7834580476605681	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	c2def2d2bc5b86b7
+405	600	7834580478376693	C:/Users/Dat Lee/Videos/Captures/File/WordMaster_Outsource/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/x6i71623/obj/arm64-v8a/libswappywrapper.so	f3d0c3f383dd7935
+31	1353	7834580486068132	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	cc0f87cb4a19ed89
+20	1366	7834580486217621	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	e8bd5b7f62bccfc4
+14	1384	7834580486397026	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	9921f32e8f7cbc4c
+37	1404	7834580486616296	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	3f8b03eb3dcff7b5
+10	1466	7834580487198911	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	652d6668f1f48726
+43	1626	7834580488789797	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	d7b9214c8d5fbfeb
+25	1656	7834580489080146	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8406dc7bb2b1ac2f
+5	1727	7834580489828050	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	ee30bcc51e6dd496
+1728	1847	7834580491051601	C:/Users/Dat Lee/Videos/Captures/File/WordMaster_Outsource/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/x6i71623/obj/arm64-v8a/libgame.so	b649c1f28fb385d0

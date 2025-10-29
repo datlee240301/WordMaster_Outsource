@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     // [SerializeField] Sprite vibrateOnSprite;
     // [SerializeField] Sprite vibrateOffSprite;
 
-    [SerializeField] TextMeshProUGUI ticketNumberText, currentLevelText;
+    [SerializeField] TextMeshProUGUI ticketNumberText, shopTicketNumberText, currentLevelText;
     int ticketNumber;
     [SerializeField] UiPanelDotween noticePanel;
     int LevelId;
@@ -44,8 +44,11 @@ public class UIManager : MonoBehaviour
         {
             LevelId = PlayerPrefs.GetInt(StringManager.currentLevelId, 1);
             PlayerPrefs.SetInt(StringManager.currentLevelId, LevelId);
-            ticketNumber = PlayerPrefs.GetInt(StringManager.ticketNumber);
+            ticketNumber = PlayerPrefs.GetInt(StringManager.ticketNumber, 150);
+            PlayerPrefs.SetInt(StringManager.ticketNumber, ticketNumber);
             ticketNumberText.text = ticketNumber.ToString();
+            if (shopTicketNumberText != null)
+                shopTicketNumberText.text = ticketNumber.ToString();
 
             // Lần đầu vào game → auto bật hết
             if (!PlayerPrefs.HasKey(StringManager.musicId))
@@ -63,7 +66,7 @@ public class UIManager : MonoBehaviour
             ticketNumber = PlayerPrefs.GetInt(StringManager.ticketNumber);
             ticketNumberText.text = ticketNumber.ToString();
             if (currentLevelText != null)
-                currentLevelText.text ="Level " + (PlayerPrefs.GetInt(StringManager.currentLevelId)+1).ToString();
+                currentLevelText.text = "Level " + PlayerPrefs.GetInt(StringManager.currentLevelId).ToString();
         }
 
         if (SceneManager.GetActiveScene().name == "Splash")
@@ -132,6 +135,8 @@ public class UIManager : MonoBehaviour
         ticketNumber += amount;
         PlayerPrefs.SetInt(StringManager.ticketNumber, ticketNumber);
         ticketNumberText.text = ticketNumber.ToString();
+        if (shopTicketNumberText != null)
+            shopTicketNumberText.text = ticketNumber.ToString();
     }
 
     public void MinusTicket(int amount)
