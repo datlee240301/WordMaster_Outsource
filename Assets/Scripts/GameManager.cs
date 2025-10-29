@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
     public TMP_Text definitionDisplay; // text cố định trên UI để hiển thị definition
     private string lastHintedWord = null; // lưu từ đang được hint (để revert nếu fail)
     public VerticalLayoutGroup wordRowsLayoutGroup;
+    [Header("TMP Fly letters")]
+    public GameObject tmpLetterPrefab; // prefab chứa TextMeshProUGUI (root: GameObject with RectTransform + TextMeshProUGUI child)
+    public Canvas mainCanvas; // gán Canvas chính (dùng để convert vị trí)
+    public float flyDuration = 0.35f;
+    public float spawnSpacing = 36f; // khoảng cách ngang giữa các prefab khi spawn tại currentBuiltWordText
+
 
     void Awake()
     {
@@ -52,6 +58,94 @@ public class GameManager : MonoBehaviour
         hintButton.onClick.AddListener(OnHintPressed);
         DebugCountLetterBoxesInFirstRow();
     }
+    private Vector2 RectTransformWorldToCanvasAnchoredPos(RectTransform rt)
+    {
+        RectTransform canvasRT = mainCanvas.GetComponent<RectTransform>();
+        Camera cam = mainCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : mainCanvas.worldCamera;
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(cam, rt.TransformPoint(rt.rect.center));
+        Vector2 anchorPos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRT, screenPoint, cam, out anchorPos);
+        return anchorPos;
+    }
+private IEnumerator SpawnTMPsAndFlyToSlots(List<char> chars, List<RectTransform> targets, WordRowUI targetRow, List<int> targetIndices)
+{
+    if (tmpLetterPrefab == null || mainCanvas == null)
+    {
+        Debug.LogWarning("tmpLetterPrefab hoặc mainCanvas chưa gán.");
+        // fallback: trực tiếp fill mà không animation
+        for (int i = 0; i < chars.Count && i < targetIndices.Count; i++)
+            targetRow.FillIndexNonHint(targetIndices[i], chars[i]);
+        yield break;
+    }
+
+    // 1) hide currentBuiltWord visuals
+    if (currentBuiltWordText != null) currentBuiltWordText.text = "";
+    if (currentWordBackground != null) currentWordBackground.gameObject.SetActive(false);
+
+    // compute spawn center anchored pos (use currentBuiltWordText rect if available)
+    RectTransform spawnRT = currentBuiltWordText.GetComponent<RectTransform>();
+    Vector2 spawnCenter = RectTransformWorldToCanvasAnchoredPos(spawnRT);
+    RectTransform canvasRT = mainCanvas.GetComponent<RectTransform>();
+
+    // spawn N prefabs horizontally centered on spawnCenter
+    int n = chars.Count;
+    float totalWidth = (n - 1) * spawnSpacing;
+    List<RectTransform> spawned = new List<RectTransform>();
+    for (int i = 0; i < n; i++)
+    {
+        GameObject go = Instantiate(tmpLetterPrefab);
+        go.transform.SetParent(canvasRT, false);
+        RectTransform rt = go.GetComponent<RectTransform>();
+        // position: center shifted
+        float x = spawnCenter.x + (i * spawnSpacing) - totalWidth / 2f;
+        float y = spawnCenter.y;
+        rt.anchoredPosition = new Vector2(x, y);
+        // set char text
+        var tmp = go.GetComponentInChildren<TextMeshProUGUI>();
+        if (tmp != null) tmp.text = chars[i].ToString();
+        spawned.Add(rt);
+    }
+
+    // animate each spawned to corresponding target anchored pos
+    float duration = flyDuration;
+    // we will move all in parallel but can add slight stagger
+    float stagger = 0.06f;
+    List<Coroutine> coros = new List<Coroutine>();
+    for (int i = 0; i < spawned.Count; i++)
+    {
+        Vector2 from = spawned[i].anchoredPosition;
+        Vector2 to = RectTransformWorldToCanvasAnchoredPos(targets[i]);
+        int idx = i;
+        coros.Add(StartCoroutine(FlyAndFill(spawned[idx], from, to, duration, targetRow, targetIndices[idx], chars[idx], idx * stagger)));
+    }
+
+    // wait until all done
+    foreach (var c in coros) yield return c;
+
+    // cleanup any leftover (FlyAndFill will destroy each spawned)
+    yield return null;
+}
+private IEnumerator FlyAndFill(RectTransform spawnedRT, Vector2 from, Vector2 to, float duration, WordRowUI row, int targetIndex, char c, float delay)
+{
+    if (delay > 0f) yield return new WaitForSeconds(delay);
+    float t = 0f;
+    while (t < duration)
+    {
+        t += Time.deltaTime;
+        float p = Mathf.SmoothStep(0f, 1f, t / duration);
+        spawnedRT.anchoredPosition = Vector2.Lerp(from, to, p);
+        yield return null;
+    }
+    spawnedRT.anchoredPosition = to;
+
+    // khi tới nơi, fill ô
+    row.FillIndexNonHint(targetIndex, c);
+
+    // destroy visual
+    Destroy(spawnedRT.gameObject);
+    yield return null;
+}
+
     // gọi khi người nhấn nút Hint
     public void OnHintPressed()
     {
@@ -207,69 +301,36 @@ public class GameManager : MonoBehaviour
     if (wordRowMap.ContainsKey(submitted))
     {
         var row = wordRowMap[submitted];
-        List<int> emptyIdx = row.GetEmptySlotIndices(); // chỉ số ô trống (left->right)
-        if (emptyIdx.Count == 0)
-        {
-            // đã đầy (không nên xảy ra) -> nothing
-            return;
-        }
+        List<int> emptyIdx = row.GetEmptySlotIndices();
+        if (emptyIdx.Count == 0) return;
 
-        // Chúng ta muốn điền theo vị trí của từ: tức là ô targetIndex sẽ lấy ký tự submitted[targetIndex]
-        // và cố gắng tìm một LetterButton trong pathUsed có letter == needed để animate.
-        bool[] usedPath = new bool[pathUsed.Count];
+// prepare mapping: for each targetIndex (emptyIdx[i]) the character should be submitted[targetIndex]
+        List<char> charsToFly = new List<char>();
+        List<RectTransform> targetRects = new List<RectTransform>();
+        List<int> targetIndices = new List<int>();
 
         for (int e = 0; e < emptyIdx.Count; e++)
         {
             int targetIndex = emptyIdx[e];
             if (targetIndex < 0 || targetIndex >= submitted.Length) continue;
-
             char needed = submitted[targetIndex];
-
-            // tìm trong pathUsed một nút chưa dùng có letter == needed
-            int foundPathIdx = -1;
-            for (int p = 0; p < pathUsed.Count; p++)
-            {
-                if (usedPath[p]) continue;
-                if (char.ToUpper(pathUsed[p].letter) == char.ToUpper(needed))
-                {
-                    foundPathIdx = p;
-                    break;
-                }
-            }
-
-            // nếu không tìm thấy nút cùng ký tự trong pathUsed, lấy nút bất kỳ chưa dùng (fallback)
-            if (foundPathIdx == -1)
-            {
-                for (int p = 0; p < pathUsed.Count; p++)
-                {
-                    if (!usedPath[p])
-                    {
-                        foundPathIdx = p;
-                        break;
-                    }
-                }
-            }
-
-            // nếu vẫn không tìm thấy (rất hiếm) -> bỏ qua
-            if (foundPathIdx == -1) continue;
-
-            // dùng nút tìm được để animate tới slot tương ứng
-            var btn = pathUsed[foundPathIdx];
-            usedPath[foundPathIdx] = true;
-
-            // animate rồi điền ký tự (chúng ta fill bằng ký tự đúng vị trí của từ)
-            StartCoroutine(MoveUILetterToSlot(btn, row.GetSlotRectAtIndex(targetIndex), 0.32f));
-            row.FillIndexNonHint(targetIndex, needed);
+            charsToFly.Add(needed);
+            targetRects.Add(row.GetSlotRectAtIndex(targetIndex));
+            targetIndices.Add(targetIndex);
         }
 
-        // hoàn tất hàng
-        Debug.Log("ăn 1 hàng");
+// launch animation coroutine (will fill and destroy prefabs)
+        StartCoroutine(SpawnTMPsAndFlyToSlots(charsToFly, targetRects, row, targetIndices));
+
+// remove word after animation start (or you can remove in coroutine after all done)
+// keep behavior consistent: remove now so player can't redo immediately
         wordRowMap.Remove(submitted);
         if (definitionDisplay != null) definitionDisplay.text = "";
         if (lastHintedWord != null && lastHintedWord == submitted) lastHintedWord = null;
-
         if (wordRowMap.Count == 0) Debug.Log("win");
+        Debug.Log("ăn 1 hàng");
         return;
+
     }
 
     // 2) Nếu không khớp toàn bộ từ, thử khớp chuỗi thiếu của từng row (như cũ)

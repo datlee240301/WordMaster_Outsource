@@ -87,7 +87,7 @@ public class DragLineController : MonoBehaviour
         // ensure ordering: larger sortingOrder -> drawn on top
         // if material supports sorting (Sprites/Default) you can set sortingLayer/order
         lr.sortingLayerName = "Default";
-        lr.sortingOrder = 0; // tăng dần để mới luôn trên
+        lr.sortingOrder = 10; // tăng dần để mới luôn trên
 
         lines.Add(lr);
         return lr;
