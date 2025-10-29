@@ -1,0 +1,3 @@
+C:\Users\Dat Lee\Videos\Captures\File\WordMaster_Outsource\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\Dat Lee\Videos\Captures\File\WordMaster_Outsource\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt
+C:\Users\Dat Lee\Videos\Captures\File\WordMaster_Outsource\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

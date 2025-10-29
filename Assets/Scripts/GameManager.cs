@@ -32,10 +32,7 @@ public class GameManager : MonoBehaviour
     // theo file GameManager của bạn
     public TMP_Text definitionDisplay; // text cố định trên UI để hiển thị definition
     private string lastHintedWord = null; // lưu từ đang được hint (để revert nếu fail)
-
-
-
-
+    public VerticalLayoutGroup wordRowsLayoutGroup;
 
     void Awake()
     {
@@ -457,5 +454,11 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log($"Hàng đầu tiên `{firstRow.name}` có {candidateCount} LetterBoxPrefab (tổng child: {firstRow.childCount}).");
+        if(candidateCount==3)
+            wordRowsLayoutGroup.padding.left = -120;
+        if(candidateCount==4)
+            wordRowsLayoutGroup.padding.left = -180;
+        if(candidateCount==5)
+            wordRowsLayoutGroup.padding.left = -240;
     }
 }
