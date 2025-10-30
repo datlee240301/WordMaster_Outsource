@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
                             if (PlayerPrefs.GetInt(StringManager.currentLevelId) < 50)
                                 PlayerPrefs.SetInt(StringManager.currentLevelId,
                                     PlayerPrefs.GetInt(StringManager.currentLevelId) + 1);
-                            uiManager.BuyTicket(100);
+                            uiManager.BuyTicket(40);
                             winPanel.PanelFadeIn();
                         }
                     }
@@ -379,7 +379,7 @@ public class GameManager : MonoBehaviour
                 if (PlayerPrefs.GetInt(StringManager.currentLevelId) < 50)
                     PlayerPrefs.SetInt(StringManager.currentLevelId,
                         PlayerPrefs.GetInt(StringManager.currentLevelId) + 1);
-                uiManager.BuyTicket(100);
+                uiManager.BuyTicket(40);
                 winPanel.PanelFadeIn();
             }
 
@@ -420,7 +420,7 @@ public class GameManager : MonoBehaviour
                         if (PlayerPrefs.GetInt(StringManager.currentLevelId) < 50)
                             PlayerPrefs.SetInt(StringManager.currentLevelId,
                                 PlayerPrefs.GetInt(StringManager.currentLevelId) + 1);
-                        uiManager.BuyTicket(100);
+                        uiManager.BuyTicket(40);
                         winPanel.PanelFadeIn();
                         Debug.Log("win");
                     }
@@ -492,7 +492,7 @@ public class GameManager : MonoBehaviour
             if (PlayerPrefs.GetInt(StringManager.currentLevelId) < 50)
                 PlayerPrefs.SetInt(StringManager.currentLevelId,
                     PlayerPrefs.GetInt(StringManager.currentLevelId) + 1);
-            uiManager.BuyTicket(100);
+            uiManager.BuyTicket(40);
             winPanel.PanelFadeIn();
         }
 
@@ -587,17 +587,17 @@ public class GameManager : MonoBehaviour
             $"Hàng đầu tiên `{firstRow.name}` có {candidateCount} LetterBoxPrefab (tổng child: {firstRow.childCount}).");
         if (candidateCount == 3)
         {
-            wordRowsLayoutGroup.padding.left = -120;
+            wordRowsLayoutGroup.padding.left = -106;
             wordRowsParent.localScale = new Vector3(1.7f, 1.7f, 1.7f);
         }
 
         if (candidateCount == 4)
         {
-            wordRowsLayoutGroup.padding.left = -180;
+            wordRowsLayoutGroup.padding.left = -159;
             wordRowsParent.localScale = new Vector3(1.17f, 1.17f, 1.17f);
         }
 
         if (candidateCount == 5)
-            wordRowsLayoutGroup.padding.left = -240;
+            wordRowsLayoutGroup.padding.left = -212;
     }
 }
