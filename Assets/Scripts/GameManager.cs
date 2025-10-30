@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public UiPanelDotween winPanel, shopPanel;
     UIManager uiManager;
     public GameObject definitionTextBG; // gán trong Inspector: background của definition text
+    MusicManager musicManager;
 
 
     void Awake()
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
         hintButton.onClick.AddListener(OnHintPressed);
         DebugCountLetterBoxesInFirstRow();
         uiManager = FindObjectOfType<UIManager>();
+        musicManager = FindObjectOfType<MusicManager>();
     }
 
     private void SetDefinitionText(string txt)
@@ -223,6 +225,7 @@ public class GameManager : MonoBehaviour
                             uiManager.BuyTicket(40);
                             winPanel.PanelFadeIn();
                             SoundManager.instance.PlayWinSound();
+                            musicManager.audioSource.volume = 0;
                         }
                     }
 
@@ -395,6 +398,7 @@ public class GameManager : MonoBehaviour
                 uiManager.BuyTicket(40);
                 winPanel.PanelFadeIn();
                 SoundManager.instance.PlayWinSound();
+                musicManager.audioSource.volume = 0;
             }
 
             Debug.Log("ăn 1 hàng");
@@ -437,6 +441,7 @@ public class GameManager : MonoBehaviour
                         uiManager.BuyTicket(40);
                         winPanel.PanelFadeIn();
                         SoundManager.instance.PlayWinSound();
+                        musicManager.audioSource.volume = 0;
                     }
                 }
 
@@ -510,6 +515,7 @@ public class GameManager : MonoBehaviour
             uiManager.BuyTicket(40);
             winPanel.PanelFadeIn();
             SoundManager.instance.PlayWinSound();
+            musicManager.audioSource.volume = 0;
         }
 
         yield return null;
