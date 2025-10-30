@@ -211,6 +211,7 @@ public class IAPManager : Singleton<IAPManager>
                 {
                     var product = cartItem.Product;
                     Debug.LogError($"Successfully confirmed order: {product.definition.id}");
+                    SoundManager.instance.PlayGetCoinSound();
                     _pendingCallback?.Invoke();
                     _pendingCallback = null;
                 }

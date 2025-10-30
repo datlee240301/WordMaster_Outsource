@@ -32,13 +32,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] float loadingDuration = 3f; // thời gian chạy đầy thanh loading
 
-    // private SoundManager soundManager;
-    // private MusicManager musicManager;
+     private SoundManager soundManager;
+     private MusicManager musicManager;
 
     void Start()
     {
-        // soundManager = FindObjectOfType<SoundManager>();
-        // musicManager = FindObjectOfType<MusicManager>();
+         soundManager = FindObjectOfType<SoundManager>();
+         musicManager = FindObjectOfType<MusicManager>();
 
         if (SceneManager.GetActiveScene().name == "Home")
         {
@@ -168,8 +168,8 @@ public class UIManager : MonoBehaviour
         musicButton.sprite = isOn ? musicOnSprite : musicOffSprite;
 
         // chỉnh volume MusicManager
-        // if (musicManager != null && musicManager.GetComponent<AudioSource>() != null)
-        //     musicManager.audioSource.volume = isOn ? 1f : 0f;
+         if (musicManager != null && musicManager.GetComponent<AudioSource>() != null)
+             musicManager.audioSource.volume = isOn ? 1f : 0f;
     }
 
     // 🔹 Toggle Sound
@@ -187,8 +187,8 @@ public class UIManager : MonoBehaviour
         soundButton.sprite = isOn ? soundOnSprite : soundOffSprite;
 
         // chỉnh volume SoundManager
-        // if (soundManager != null && soundManager.GetComponent<AudioSource>() != null)
-        //     soundManager.audioSource.volume = isOn ? 1f : 0f;
+        if (soundManager != null && soundManager.GetComponent<AudioSource>() != null)
+            soundManager.audioSource.volume = isOn ? 1f : 0f;
     }
 
     // 🔹 Toggle Vibrate

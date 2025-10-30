@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     public UiPanelDotween winPanel, shopPanel;
     UIManager uiManager;
+    public GameObject definitionTextBG; // gán trong Inspector: background của definition text
 
 
     void Awake()
@@ -77,10 +78,18 @@ public class GameManager : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
     }
 
+    private void SetDefinitionText(string txt)
+    {
+        if (definitionDisplay != null)
+            definitionDisplay.text = txt;
+        if (definitionTextBG != null)
+            definitionTextBG.SetActive(!string.IsNullOrEmpty(txt));
+    }
+
 
 // Di chuyển nội dung hiện tại của OnHintPressed (phần reveal 1 ký tự + show definition)
 // vào hàm này, rồi gọi PerformHintOnce() khi dùng 1 hint.
-    
+
 
     private Vector2 RectTransformWorldToCanvasAnchoredPos(RectTransform rt)
     {
@@ -189,8 +198,7 @@ public class GameManager : MonoBehaviour
                 {
                     // show definition ở chỗ cố định (một lần đầu)
                     if (definitionDisplay != null)
-                        definitionDisplay.text = row.Definition;
-
+                        SetDefinitionText(row.Definition);
                     int revealedIndex = row.RevealOneLetterHint(); // reveal 1 ký tự, đánh dấu isHinted
                     lastHintedWord = row.word.ToUpper();
 
@@ -198,11 +206,13 @@ public class GameManager : MonoBehaviour
                     if (row.IsFullyRevealed())
                     {
                         Debug.Log("ăn 1 hàng");
+                        SoundManager.instance.PlayFoundWordSound();
                         if (wordRowMap.ContainsKey(row.word.ToUpper()))
                             wordRowMap.Remove(row.word.ToUpper());
 
                         // clear definition display
-                        if (definitionDisplay != null) definitionDisplay.text = "";
+                        if (definitionDisplay != null) SetDefinitionText("");
+
                         lastHintedWord = null;
 
                         if (wordRowMap.Count == 0)
@@ -212,6 +222,7 @@ public class GameManager : MonoBehaviour
                                     PlayerPrefs.GetInt(StringManager.currentLevelId) + 1);
                             uiManager.BuyTicket(40);
                             winPanel.PanelFadeIn();
+                            SoundManager.instance.PlayWinSound();
                         }
                     }
 
@@ -372,7 +383,8 @@ public class GameManager : MonoBehaviour
 // remove word after animation start (or you can remove in coroutine after all done)
 // keep behavior consistent: remove now so player can't redo immediately
             wordRowMap.Remove(submitted);
-            if (definitionDisplay != null) definitionDisplay.text = "";
+            if (definitionDisplay != null) SetDefinitionText("");
+
             if (lastHintedWord != null && lastHintedWord == submitted) lastHintedWord = null;
             if (wordRowMap.Count == 0)
             {
@@ -381,6 +393,7 @@ public class GameManager : MonoBehaviour
                         PlayerPrefs.GetInt(StringManager.currentLevelId) + 1);
                 uiManager.BuyTicket(40);
                 winPanel.PanelFadeIn();
+                SoundManager.instance.PlayWinSound();
             }
 
             Debug.Log("ăn 1 hàng");
@@ -422,7 +435,7 @@ public class GameManager : MonoBehaviour
                                 PlayerPrefs.GetInt(StringManager.currentLevelId) + 1);
                         uiManager.BuyTicket(40);
                         winPanel.PanelFadeIn();
-                        Debug.Log("win");
+                        SoundManager.instance.PlayWinSound();
                     }
                 }
 
@@ -443,6 +456,7 @@ public class GameManager : MonoBehaviour
 
             // nếu không có hint thì revert như bình thường
             //messagePanel?.Show("Sai!", false);
+            Handheld.Vibrate();
         }
     }
 
@@ -494,6 +508,7 @@ public class GameManager : MonoBehaviour
                     PlayerPrefs.GetInt(StringManager.currentLevelId) + 1);
             uiManager.BuyTicket(40);
             winPanel.PanelFadeIn();
+            SoundManager.instance.PlayWinSound();
         }
 
         yield return null;
