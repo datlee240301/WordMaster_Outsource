@@ -358,6 +358,7 @@ public class GameManager : MonoBehaviour
         // 1) Nếu submitted khớp chính xác 1 từ trong map (đủ hoặc một phần đã có do hint)
         if (wordRowMap.ContainsKey(submitted))
         {
+            SoundManager.instance.PlayFoundWordSound();
             var row = wordRowMap[submitted];
             List<int> emptyIdx = row.GetEmptySlotIndices();
             if (emptyIdx.Count == 0) return;
