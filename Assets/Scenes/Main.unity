@@ -4209,10 +4209,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7251395299416929086, guid: 22d0ecc983221bc47a3dc25dd1d1d94c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6604853139758004211, guid: 22d0ecc983221bc47a3dc25dd1d1d94c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1497316423}
   m_SourcePrefab: {fileID: 100100000, guid: 22d0ecc983221bc47a3dc25dd1d1d94c, type: 3}
 --- !u!224 &1497316420 stripped
 RectTransform:
@@ -4224,12 +4228,30 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6421565044663845187, guid: 22d0ecc983221bc47a3dc25dd1d1d94c, type: 3}
   m_PrefabInstance: {fileID: 1497316419}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1497316422}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25dfc37fe01649141bea255bfd43e85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UiPanelDotween
+--- !u!1 &1497316422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6604853139758004211, guid: 22d0ecc983221bc47a3dc25dd1d1d94c, type: 3}
+  m_PrefabInstance: {fileID: 1497316419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1497316423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497316422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02affe49ea009bc40a2c070aa6e27056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IAPManager
+  UseFakeStore: 0
 --- !u!1 &1539809590
 GameObject:
   m_ObjectHideFlags: 0
